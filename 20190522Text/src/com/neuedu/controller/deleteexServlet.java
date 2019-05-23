@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name = "updataServlet",urlPatterns = "/sxm.3")
-public class updataServlet extends HttpServlet {
+@WebServlet(name = "deleteexServlet",urlPatterns = "/fb3.do")
+public class deleteexServlet extends HttpServlet {
     private userdao ud;
 
     @Override
@@ -21,8 +21,7 @@ public class updataServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Integer id = Integer.valueOf(request.getParameter("id"));
-        String password = request.getParameter("password");
-        ud.updataUser(id,password);
-        request.getRequestDispatcher("OperatingInformation.jsp").forward(request,response);
+        ud.deleteUser(id);
+        request.getRequestDispatcher("fb").forward(request,response);
     }
 }

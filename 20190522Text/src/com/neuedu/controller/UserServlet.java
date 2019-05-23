@@ -24,7 +24,9 @@ public class UserServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<User> allUser = ud.getAllUser();
         request.setAttribute("users",allUser);
+//        request.getRequestDispatcher("OperatingInformation.jsp").forward(request,response);
         request.getRequestDispatcher("index.jsp").forward(request,response);
+
 
     }
 

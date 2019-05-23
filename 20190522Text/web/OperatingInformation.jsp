@@ -12,13 +12,12 @@
 </head>
 <body>
 <%--查询所有--%>
+
 <table border="1px" style="width: 600px;height: 80px;text-align:center">
     <c:forEach items="${users}" var="user">
         <thead>
         <th>id</th>
-        <th>
-            用户名
-        </th>
+        <th>用户名</th>
         <th>密码</th>
         </thead>
         <tr>
@@ -28,6 +27,9 @@
         </tr>
     </c:forEach>
 </table>
+<form action="sxm" method="get">
+    <input type="submit" value="查询所有">
+</form>
 <%--添加信息--%>
 <form action="sxm.1" method="get">
     用户名：<input type="text" name="usm">

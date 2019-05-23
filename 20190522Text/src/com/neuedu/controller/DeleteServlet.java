@@ -22,5 +22,6 @@ public class DeleteServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Integer id = Integer.valueOf(request.getParameter("id"));
         ud.deleteUser(id);
+        request.getRequestDispatcher("OperatingInformation.jsp").forward(request,response);
     }
 }

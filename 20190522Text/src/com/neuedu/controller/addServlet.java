@@ -23,5 +23,6 @@ public class addServlet extends HttpServlet {
         String username = request.getParameter("usm");
         String password = request.getParameter("psw");
         ud.addUser(username,password);
+        request.getRequestDispatcher("OperatingInformation.jsp").forward(request,response);
     }
 }

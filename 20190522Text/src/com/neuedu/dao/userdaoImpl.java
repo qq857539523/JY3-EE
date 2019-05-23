@@ -1,6 +1,7 @@
 package com.neuedu.dao;
 
 import com.neuedu.dataSource.DruidDataSource;
+import com.neuedu.pojo.Product;
 import com.neuedu.pojo.User;
 import org.apache.commons.dbutils.DbUtils;
 import org.apache.commons.dbutils.QueryRunner;
@@ -43,7 +44,7 @@ public class userdaoImpl implements userdao {
         try {
             conn = dds.getConnection();
 //            int update = qr.update(conn, sql, username, password);
-            qr.update(conn,sql,username,username);
+            qr.update(conn,sql,username,password);
 //            System.out.println(update);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -92,6 +93,44 @@ public class userdaoImpl implements userdao {
                 e.printStackTrace();
             }
         }
+    }
+
+    @Override
+    public void updataexUser(User user) {
+        String sql = "UPDATE myuser SET username=?,password=? WHERE id = ?";
+        Connection connection = null;
+        try {
+            connection = dds.getConnection();
+            qr.update(connection,sql,user.getUsername(),user.getPassword(),user.getId());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            try {
+                DbUtils.close(connection);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    @Override
+    public List<Product> Progetall() {
+        String sql = "SELECT pro_id,pro_name,pro_price FROM product";
+        Connection conn = null;
+        List<Product> query = null;
+        try {
+            conn = dds.getConnection();
+            query = qr.query(conn, sql, new BeanListHandler<>(Product.class));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            try {
+                DbUtils.close(conn);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return query;
     }
 
 

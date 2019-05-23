@@ -2,6 +2,7 @@ package com.neuedu.controller;
 
 import com.neuedu.dao.userdao;
 import com.neuedu.dao.userdaoImpl;
+import com.neuedu.pojo.User;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,9 +10,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
-@WebServlet(name = "updataServlet",urlPatterns = "/sxm.3")
-public class updataServlet extends HttpServlet {
+@WebServlet(name = "examineServlet",urlPatterns = "/fb")
+public class examineServlet extends HttpServlet {
     private userdao ud;
 
     @Override
@@ -20,9 +22,8 @@ public class updataServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        Integer id = Integer.valueOf(request.getParameter("id"));
-        String password = request.getParameter("password");
-        ud.updataUser(id,password);
-        request.getRequestDispatcher("OperatingInformation.jsp").forward(request,response);
+        List<User> allUser = ud.getAllUser();
+        request.setAttribute("users",allUser);
+        request.getRequestDispatcher("examine.jsp").forward(request,response);
     }
 }
